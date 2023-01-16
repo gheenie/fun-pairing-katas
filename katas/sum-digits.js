@@ -7,13 +7,6 @@
     --> 6
 */
 
-<<<<<<< HEAD
-function sumDigits(num) {
-  const digits = String(num).split('');
-  
-  return digits.reduce((count, digit) => {
-    return Number(digit) + count;
-=======
 function sumDigits(str) {
   const chars = String(str).split('');
   
@@ -24,7 +17,6 @@ function sumDigits(str) {
     }
 
     return sum;
->>>>>>> c1b678e0e2dc450de875bbd6c30efee5cf30890e
   }, 0);
 }
 
