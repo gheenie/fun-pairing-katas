@@ -8,9 +8,6 @@
 
 function getCentury(year) {
   let century = Math.floor(year / 100) + 1;
-  let centuryStr = String(century);
-  let key = 0;
-
   const suffixes = {
     "0": "th",
     "1": "st",
@@ -18,10 +15,7 @@ function getCentury(year) {
     "3": "rd"
   };
 
-  if (century > 5 && century < 21) key = "0";
-  else key = centuryStr.slice(-1);
-
-  return centuryStr + suffixes[key];
+  return century + suffixes[ century > 5 && century < 21? "0" : String(century).slice(-1) ];
 }
 
 module.exports = getCentury;
