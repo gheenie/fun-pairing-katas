@@ -7,12 +7,17 @@
     --> 6
 */
 
-function sumDigits(num) {
-  const nums = String(num).split('');
+function sumDigits(str) {
+  const chars = String(str).split('');
+  let sum = 0;
   
-  return nums.reduce((count, num) => {
-    return Number(num) + count;
-  }, 0);
+  chars.forEach( (char) => {
+    if ( !isNaN(char) ) {
+      sum += parseInt(char);
+    }
+  });
+
+  return sum;
 }
 
 module.exports = sumDigits;

@@ -34,11 +34,16 @@ const sumDigits = require('../katas/sum-digits');
 */
 
 describe('All digits should be summed, excluding punctuation, etc.', () => {
-  test('Single digit number', () => {
+  test('returns single digit number when passed a single digit', () => {
     expect(sumDigits(1)).toBe(1);
   });
 
-  test('Multi-digit number', () => {
-    expect(sumDigits(123)).toBe(6);
-  }); 
+
+  test('returns sum of digits when passed a multi-digit number', () => {
+    expect(sumDigits(99)).toBe(18);
+  });
+
+  test('returns sum of digits ignoring non-numericals when passed a non-integer', () => {
+    expect(sumDigits(10.5)).toBe(6);
+  });
 });
