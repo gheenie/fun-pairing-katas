@@ -6,6 +6,16 @@
   'hello world' would become 'HeLlO wOrLd'
 */
 
-function alternateCase() {}
+function alternateCase(str) {
+  let res = "";
+  // convert string into array to iterate over its elements
+  let chars = str.split('');
+
+  chars.forEach( (char, index) => {
+    res += index % 2? char.toLowerCase() : char.toUpperCase();
+  });
+
+  return res;
+}
 
 module.exports = alternateCase;
