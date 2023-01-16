@@ -8,11 +8,13 @@
 
 function alternateCase(str) {
   let res = "";
+  // convert string into array to iterate over its elements
+  let chars = str.split('');
 
-  for( let i = 0; i < str.length; i++) {
-    res += i % 2? str[i].toLowerCase() : str[i].toUpperCase();
-  }
-  //return str[0].toUpperCase();
+  chars.forEach( (char, index) => {
+    res += index % 2? char.toLowerCase() : char.toUpperCase();
+  });
+
   return res;
 }
 
