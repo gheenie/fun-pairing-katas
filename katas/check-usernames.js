@@ -11,7 +11,9 @@ function checkUsernames(arr) {
   return arr.every( (username) => {
     // console.log(`username: "${username}"`);
 
-    return username.length > 4 && username.length < 21;
+    return username.length > 4 &&
+      username.length < 21 && 
+      /^[a-z0-9_]+$/.test(username)
   })
 }
 
