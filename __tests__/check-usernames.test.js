@@ -2,6 +2,7 @@ const checkUsernames = require("../katas/check-usernames");
 
 /* TODO
 
+["abc"] -> false
 ["abcde", "abcdef"] -> true
 ["abcde", "abcdefghijklmnopqrstu"] -> false
 ["User"] -> false
@@ -11,7 +12,11 @@ const checkUsernames = require("../katas/check-usernames");
 */
 
 describe("checkUsernames takes an array of usernames and returns true if they are all valid and false otherwise", () => {
-    test("least 5 characters long", () => {
+    test("at least 5 characters long", () => {
+        expect( checkUsernames(["abc", "abcdef"])).toBe(false);
+    });
+
+    test("at least 5 characters long", () => {
         expect( checkUsernames(["abcde", "abcdef"])).toBe(true);
     });
 

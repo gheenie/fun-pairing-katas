@@ -7,14 +7,7 @@
 */
 
 function checkUsernames(arr) {
-  // console.log(`arr: ${arr}`);
-  return arr.every( (username) => {
-    // console.log(`username: "${username}"`);
-
-    return username.length > 4 &&
-      username.length < 21 && 
-      /^[a-z0-9_]+$/.test(username)
-  })
+  return arr.every( (username) => /^[a-z0-9_]{5,20}$/.test(username) );
 }
 
 module.exports = checkUsernames;
