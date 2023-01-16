@@ -6,6 +6,13 @@
   - is no longer than 20 characters
 */
 
-function checkUsernames() {}
+function checkUsernames(arr) {
+  // console.log(`arr: ${arr}`);
+  return arr.every( (username) => {
+    // console.log(`username: "${username}"`);
+
+    return username.length > 4;
+  })
+}
 
 module.exports = checkUsernames;
