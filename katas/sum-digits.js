@@ -9,15 +9,15 @@
 
 function sumDigits(str) {
   const chars = String(str).split('');
-  let sum = 0;
   
-  chars.forEach( (char) => {
+  // a bit uglier tbh, still works
+  return chars.reduce( (sum, char) => {
     if ( !isNaN(char) ) {
       sum += parseInt(char);
     }
-  });
 
-  return sum;
+    return sum;
+  }, 0);
 }
 
 module.exports = sumDigits;
