@@ -8,10 +8,10 @@
 */
 
 function sumDigits(num) {
-  const nums = String(num).split('');
+  const digits = String(num).split('');
   
-  return nums.reduce((count, num) => {
-    return Number(num) + count;
+  return digits.reduce((count, digit) => {
+    return Number(digit) + count;
   }, 0);
 }
 
