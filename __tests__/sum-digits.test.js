@@ -33,8 +33,13 @@ const sumDigits = require('../katas/sum-digits');
   E.g. sumDigits(10.5) should output 6
 */
 
+<<<<<<< HEAD
+describe('All digits should be summed, ignoring non-numerics.', () => {
+  test('Single digit number', () => {
+=======
 describe('All digits should be summed, excluding punctuation, etc.', () => {
   test('returns single digit number when passed a single digit', () => {
+>>>>>>> c1b678e0e2dc450de875bbd6c30efee5cf30890e
     expect(sumDigits(1)).toBe(1);
   });
 
