@@ -8,6 +8,14 @@
   range(5, 2, 2) --> [2, 4, 6, 8, 10]
 */
 
-function range() {}
+function range(length, start = 0, step = 1) {
+  const res = [];
+
+  for( let i = 0; i < length; i++, start += step) {
+    res.push(start);
+  }
+
+  return res;
+}
 
 module.exports = range;
