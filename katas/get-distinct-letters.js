@@ -5,6 +5,29 @@
   This is because h and e are in 'hello' but not in 'world', and w, r and d are in 'world' but not in 'hello'. hewrd' sorted => 'dehrw'
 */
 
+function getDistinctLetters(str1, str2) {
+  const letterSource = {};
+
+  for (let i = 0; i < str1.length; i++) {
+    if (!letterSource.hasOwnProperty( str1[i] )) {
+      letterSource[ str1[i] ] = 'str1';
+    }
+  }
+
+  for (let i = 0; i < str2.length; i++) {
+    if (!letterSource.hasOwnProperty( str2[i] )) {
+      letterSource[ str2[i] ] = 'str2';
+    } else if (letterSource[ str2[i] ] === 'str1') {
+      delete letterSource[ str2[i] ];
+    }
+  }
+
+  return Object.keys(letterSource).sort().join('');
+}
+
+module.exports = getDistinctLetters;
+
+/*
 const removeDuplicates = require('../katas/remove-duplicates');
 
 function getUnique(str1, str2) {
@@ -25,5 +48,4 @@ function getDistinctLetters(str1, str2) {
 
   return removeDuplicates( oneWay.concat(theOtherWay) ).sort().join("");
 }
-
-module.exports = getDistinctLetters;
+*/
