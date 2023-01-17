@@ -8,6 +8,8 @@
   --> false
 */
 
-function checkStudents() {}
+function checkStudents(students, cohort) {
+  return students.every( (student) => student.cohort === cohort );
+}
 
 module.exports = checkStudents;
