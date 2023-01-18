@@ -15,32 +15,37 @@ function getDistinctLetters(str1, str2) {
 }
 */
 
+/*
+format:
+lettersObj = {
+  "a": [0, 1],
+  "n": [2, 0],
+  ...
+}
+*/
 function fillLetters(lettersObj, str, index) {
   str.split('').forEach( function (letter) {
-    if ( lettersObj[letter] === undefined ) {
-      lettersObj[letter] = [];
-      lettersObj[letter].length = 2;
-      lettersObj[letter][index] = 1;
+    const letterObj = lettersObj[letter];
+
+    if (letterObj) {
+      letterObj[index] = letterObj[index]? letterObj[index]++ : 1;
     } else {
-      if ( lettersObj[letter][index] === undefined ) {
-        lettersObj[letter][index] = 1;
-      } else {
-        lettersObj[letter][index]++;
-      }
+      lettersObj[letter] = Array.of(0, 0);
+      lettersObj[letter][index] = 1;
     }
   });
 }
 
 function getDistinctLetters(str1, str2) {
   const lettersObj = {};
+  let index = 0;
 
-  console.log(`str1: "${str1}", str2: "${str2}"`);
+  fillLetters(lettersObj, str1, index++);
+  fillLetters(lettersObj, str2, index);
 
-  fillLetters(lettersObj, str1, 0);
-  fillLetters(lettersObj, str2, 1);
+  const uniqueEntries = Object.entries(lettersObj).filter( ([key, arr]) => !(arr[0] && arr[1]) );
 
-  return Object.entries(lettersObj).filter( ([key, arr]) =>
-      !(arr[0] && arr[1]) ).map( ([key, arr]) => key ).sort().join('');
+  return uniqueEntries.map( ([key, arr]) => key ).sort().join('');
 }
 
 
