@@ -1,23 +1,23 @@
 const getDistinctLetters = require("../katas/get-distinct-letters");
 
 describe("getDistinctLetters should take two strings and return a string of all the letters that are unique to either of the input strings, in alphabetical order.", () => {
-    test("two characters, identical", () => {
+    test("no distinct letters", () => {
         expect( getDistinctLetters("e", "e") ).toBe("");
     });
 
-    test('"e", "ea" -> "a"', () => {
+    test('distinct letter from second word', () => {
         expect( getDistinctLetters("e", "ea") ).toBe("a");
     });
 
-    test('"ea", "e" -> "a"', () => {
+    test('distinct letter from first word', () => {
         expect( getDistinctLetters("ea", "e") ).toBe("a");
     });
 
-    test('"eaa", "e" -> "a"', () => {
+    test('distinct but multiple letter from first word', () => {
         expect( getDistinctLetters("eaa", "e") ).toBe("a");
     });
 
-    test('"eaa", "ie" -> "ai"', () => {
+    test('distinct letter from both words, multiple from first', () => {
         expect( getDistinctLetters("eaa", "ie") ).toBe("ai");
     });
 
