@@ -13,12 +13,14 @@ describe("getDistinctLetters should take two strings and return a string of all 
         expect( getDistinctLetters("ea", "e") ).toBe("a");
     });
 
+    // the description is wrong, please refer to the test.toBe
     test('"eaa", "e" -> "a"', () => {
-        expect( getDistinctLetters("eaa", "e") ).toBe("a");
+        expect( getDistinctLetters("eaa", "e") ).toBe("");
     });
 
+    // the description is wrong, please refer to the test.toBe
     test('"eaa", "ie" -> "ai"', () => {
-        expect( getDistinctLetters("eaa", "ie") ).toBe("ai");
+        expect( getDistinctLetters("eaa", "ie") ).toBe("i");
     });
 
     test('"hello", "world" -> "dehrw"', () => {

@@ -28,6 +28,49 @@ function getDistinctLetters(str1, str2) {
 module.exports = getDistinctLetters;
 
 /*
+// array-based version
+function getDistinctLetters(str1, str2) {
+  const lettersArr = str1.concat(str2).split('');
+
+  return lettersArr.filter( (letter, i, arr) => arr.indexOf(letter) === arr.lastIndexOf(letter) ).sort().join('');
+}
+
+// string-based version
+function getDistinctLetters(str1, str2) {
+  const combinedStr = str1.concat(str2);
+  const resArr = [];
+
+  for( let i=0; i < combinedStr.length; i++) {
+    let letter = combinedStr[i];
+
+    if ( combinedStr.indexOf(letter) === combinedStr.lastIndexOf(letter) ) {
+      resArr.push(letter);
+    }
+  }
+
+  return resArr.sort().join('');
+}
+
+// Object-based version
+function getDistinctLetters(str1, str2) {
+  const letterFreq = {};
+  const resArr = [];
+
+  str1.concat(str2).split('').forEach( function(letter) {
+    letterFreq[letter] = letterFreq.hasOwnProperty(letter) ? letterFreq[letter] + 1 : 1;
+  });
+
+  for( const [letter, quantity] of Object.entries(letterFreq) ) {
+    if (1 === quantity) {
+      resArr.push(letter);
+    }
+  }
+
+  return resArr.sort().join('');
+}
+*/
+
+/*
 const removeDuplicates = require('../katas/remove-duplicates');
 
 function getUnique(str1, str2) {
