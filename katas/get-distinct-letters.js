@@ -5,69 +5,6 @@
   This is because h and e are in 'hello' but not in 'world', and w, r and d are in 'world' but not in 'hello'. hewrd' sorted => 'dehrw'
 */
 
-/* array-based version that utilises .includes()
-function getUniqueLetters(str1, str2) {
-  return str1.split('').filter( (letter, index, arr) => !str2.includes(letter) && index === arr.indexOf(letter) );
-}
-
-function getDistinctLetters(str1, str2) {
-  return getUniqueLetters(str1, str2).concat( getUniqueLetters(str2, str1) ).sort().join('');
-}
-*/
-
-/*
-format:
-lettersObj = {
-  "a": [0, 1],
-  "n": [2, 0],
-  ...
-}
-*/
-function fillLetters(lettersObj, str, index) {
-  str.split('').forEach( function (letter) {
-    const letterObj = lettersObj[letter];
-
-    if (letterObj) {
-      letterObj[index] = letterObj[index]? letterObj[index]++ : 1;
-    } else {
-      lettersObj[letter] = Array.of(0, 0);
-      lettersObj[letter][index] = 1;
-    }
-  });
-}
-
-function getDistinctLetters(str1, str2) {
-  const lettersObj = {};
-  let index = 0;
-
-  fillLetters(lettersObj, str1, index++);
-  fillLetters(lettersObj, str2, index);
-
-  const uniqueEntries = Object.entries(lettersObj).filter( ([key, arr]) => !(arr[0] && arr[1]) );
-
-  return uniqueEntries.map( ([key, arr]) => key ).sort().join('');
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
 function getDistinctLetters(str1, str2) {
   const letterSource = {};
 
@@ -87,71 +24,53 @@ function getDistinctLetters(str1, str2) {
 
   return Object.keys(letterSource).sort().join('');
 }
-*/
+
 module.exports = getDistinctLetters;
 
-/*
-// array-based version
-function getDistinctLetters(str1, str2) {
-  const lettersArr = str1.concat(str2).split('');
-
-  return lettersArr.filter( (letter, i, arr) => arr.indexOf(letter) === arr.lastIndexOf(letter) ).sort().join('');
+/* array-based version that utilises .includes()
+function getUniqueLetters(str1, str2) {
+  return str1.split('').filter( (letter, index, arr) => !str2.includes(letter) && index === arr.indexOf(letter) );
 }
 
-// string-based version
 function getDistinctLetters(str1, str2) {
-  const combinedStr = str1.concat(str2);
-  const resArr = [];
-
-  for( let i=0; i < combinedStr.length; i++) {
-    let letter = combinedStr[i];
-
-    if ( combinedStr.indexOf(letter) === combinedStr.lastIndexOf(letter) ) {
-      resArr.push(letter);
-    }
-  }
-
-  return resArr.sort().join('');
-}
-
-// Object-based version
-function getDistinctLetters(str1, str2) {
-  const letterFreq = {};
-  const resArr = [];
-
-  str1.concat(str2).split('').forEach( function(letter) {
-    letterFreq[letter] = letterFreq.hasOwnProperty(letter) ? letterFreq[letter] + 1 : 1;
-  });
-
-  for( const [letter, quantity] of Object.entries(letterFreq) ) {
-    if (1 === quantity) {
-      resArr.push(letter);
-    }
-  }
-
-  return resArr.sort().join('');
+  return getUniqueLetters(str1, str2).concat( getUniqueLetters(str2, str1) ).sort().join('');
 }
 */
 
-/*
-const removeDuplicates = require('../katas/remove-duplicates');
+/* Object-based version
+Use the following frequency table to filter out non-unique letters
+format:
+lettersObj = {
+  "a": [0, 1],
+  "n": [2, 0],
+  ...
+  _index=1
+}
 
-function getUnique(str1, str2) {
-  let res = [];
+function fillLetters(lettersObj, str) {
+  let _index = lettersObj._index;
 
-  for( let i = 0; i < str2.length; i++) {
-    if ( !str1.includes( str2[i] ) ) {
-      res.push( str2[i] );
+  str.split('').forEach( function (letter) {
+    const letterObj = lettersObj[letter];
+
+    if (letterObj) {
+      letterObj[_index] = letterObj[_index]? letterObj[_index]++ : 1;
+    } else {
+      lettersObj[letter] = Array.of(_index? 0 : 1, _index? 1 : 0);
     }
-  }
+  });
 
-  return res;
+  lettersObj._index++;
 }
 
 function getDistinctLetters(str1, str2) {
-  const oneWay = getUnique(str1, str2);
-  const theOtherWay = getUnique(str2, str1);
+  let lettersObj = { _index: 0 };
 
-  return removeDuplicates( oneWay.concat(theOtherWay) ).sort().join("");
+  fillLetters(lettersObj, str1);
+  fillLetters(lettersObj, str2);
+
+  const uniqueEntries = Object.entries(lettersObj).filter( ([key, arr]) => key.length === 1 && !(arr[0] && arr[1]) );
+
+  return uniqueEntries.map( ([key, arr]) => key ).sort().join('');
 }
 */
