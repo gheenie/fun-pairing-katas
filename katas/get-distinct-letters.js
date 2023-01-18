@@ -5,6 +5,64 @@
   This is because h and e are in 'hello' but not in 'world', and w, r and d are in 'world' but not in 'hello'. hewrd' sorted => 'dehrw'
 */
 
+/* array-based version that utilises .includes()
+function getUniqueLetters(str1, str2) {
+  return str1.split('').filter( (letter, index, arr) => !str2.includes(letter) && index === arr.indexOf(letter) );
+}
+
+function getDistinctLetters(str1, str2) {
+  return getUniqueLetters(str1, str2).concat( getUniqueLetters(str2, str1) ).sort().join('');
+}
+*/
+
+function fillLetters(lettersObj, str, index) {
+  str.split('').forEach( function (letter) {
+    if ( lettersObj[letter] === undefined ) {
+      lettersObj[letter] = [];
+      lettersObj[letter].length = 2;
+      lettersObj[letter][index] = 1;
+    } else {
+      if ( lettersObj[letter][index] === undefined ) {
+        lettersObj[letter][index] = 1;
+      } else {
+        lettersObj[letter][index]++;
+      }
+    }
+  });
+}
+
+function getDistinctLetters(str1, str2) {
+  const lettersObj = {};
+
+  console.log(`str1: "${str1}", str2: "${str2}"`);
+
+  fillLetters(lettersObj, str1, 0);
+  fillLetters(lettersObj, str2, 1);
+
+  return Object.entries(lettersObj).filter( ([key, arr]) =>
+      !(arr[0] && arr[1]) ).map( ([key, arr]) => key ).sort().join('');
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
 function getDistinctLetters(str1, str2) {
   const letterSource = {};
 
@@ -24,7 +82,7 @@ function getDistinctLetters(str1, str2) {
 
   return Object.keys(letterSource).sort().join('');
 }
-
+*/
 module.exports = getDistinctLetters;
 
 /*
