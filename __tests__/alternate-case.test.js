@@ -23,7 +23,7 @@ describe("Return every other letter either capital or lower case, starting with 
     });
 
     test("strings with spaces", () => {
-        expect( alternateCase("abc e") ).toBe("AbC E");
+        expect( alternateCase("hello world") ).toBe("HeLlO wOrLd");
     });
 
     test("empty string", () => {
