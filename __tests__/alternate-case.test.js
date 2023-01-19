@@ -14,19 +14,19 @@ describe("Return every other letter either capital or lower case, starting with 
         expect( alternateCase("a") ).toBe("A");
     });
 
-    test("return Ab on aB", () => {
+    test("two letter string", () => {
         expect( alternateCase("aB") ).toBe("Ab");
     });
 
-    test("return AbC on abc", () => {
+    test("three letter string", () => {
         expect( alternateCase("abc") ).toBe("AbC");
     });
 
-    test("return 'AbC E' on 'abc e'", () => {
+    test("strings with spaces", () => {
         expect( alternateCase("abc e") ).toBe("AbC E");
     });
 
-    test("return '' on ''", () => {
+    test("empty string", () => {
         expect( alternateCase("") ).toBe("");
     });
 })
