@@ -1,14 +1,5 @@
 const alternateCase = require("../katas/alternate-case.js");
 
-/*
-TODO:
-"a" -> "A"
-"aB" -> "Ab"
-"abc" -> "AbC"
-"abc e" -> "AbC E"
-"" -> ""
-*/
-
 describe("Return every other letter either capital or lower case, starting with a capital letter.", () => {
     test("return a capitalised character if passed one character", () => {
         expect( alternateCase("a") ).toBe("A");
