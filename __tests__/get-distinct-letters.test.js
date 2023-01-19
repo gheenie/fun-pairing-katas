@@ -21,7 +21,7 @@ describe("getDistinctLetters should take two strings and return a string of all 
         expect( getDistinctLetters("eaa", "ie") ).toBe("ai");
     });
 
-    test('"hello", "worldo" -> "dehrw"', () => {
+    test('"hello", "worldoo" -> "dehrw"', () => {
         expect( getDistinctLetters("hello", "worldo") ).toBe("dehrw");
     });
 })
