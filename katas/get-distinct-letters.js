@@ -10,16 +10,22 @@ function getDistinctLetters(str1, str2) {
   const letterSource = {};
 
   for (let i = 0; i < str1.length; i++) {
-    if (!letterSource.hasOwnProperty( str1[i] )) {
-      letterSource[ str1[i] ] = 'str1';
-    }
+    letterSource[str1[i]] = 'str1';
   }
 
   for (let i = 0; i < str2.length; i++) {
-    if (!letterSource.hasOwnProperty( str2[i] )) {
-      letterSource[ str2[i] ] = 'str2';
-    } else if (letterSource[ str2[i] ] === 'str1') {
-      delete letterSource[ str2[i] ];
+    str2letter = str2[i];
+
+    if ( !letterSource.hasOwnProperty(str2letter) ) {
+      letterSource[str2letter] = 'str2';
+    } else if (letterSource[str2letter] === 'str1') {
+      letterSource[str2letter] += 'str2';
+    }
+  }
+
+  for (const key in letterSource) {
+    if (letterSource[key] === 'str1str2') {
+      delete letterSource[key];
     }
   }
 
