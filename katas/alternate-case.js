@@ -7,15 +7,25 @@
 */
 
 function alternateCase(str) {
-  let res = "";
-  // convert string into array to iterate over its elements
-  let chars = str.split('');
+  const words = str.split(' ');
+  const wordsWithSplitLetters = words.map( (word) => word.split('') );
+  
+  let overallIndex = 0;
 
-  chars.forEach( (char, index) => {
-    res += index % 2? char.toLowerCase() : char.toUpperCase();
-  });
+  for (let i = 0; i < wordsWithSplitLetters.length; i++) {
+    const splitWord = wordsWithSplitLetters[i];
 
-  return res;
+    for (let j = 0; j < splitWord.length; j++) {
+      overallIndex % 2 ? splitWord[j] = splitWord[j].toLowerCase() : splitWord[j] = splitWord[j].toUpperCase();
+
+      overallIndex++;
+    }
+
+    // words with transformed letters
+    wordsWithSplitLetters[i] = splitWord.join('');
+  }
+
+  return wordsWithSplitLetters.join(' ');
 }
 
 module.exports = alternateCase;
