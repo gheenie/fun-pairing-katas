@@ -1,51 +1,50 @@
 const getCentury = require("../katas/get-century");
 
-/*
-TODO:
-100 to 10000
-
-1877 -> 19th
-1999 -> 20th
-2004 -> 21st
-3105 -> 32nd
-5298 -> 53rd
-7318 -> 74th
-*/
-
 describe("getCentury should take a year as a number and return the century.", () => {
-    test("38 -> 1st", () => {
+    test("century ending 1 to 3", () => {
         expect( getCentury(38) ).toBe("1st");
-    });
-
-    test("123 -> 2nd", () => {
         expect( getCentury(123) ).toBe("2nd");
-    });
-
-    test("218 -> 3rd", () => {
         expect( getCentury(218) ).toBe("3rd");
     });
 
-    test("512 -> 6th", () => {
-        expect( getCentury(512) ).toBe("6th");
+    test("century ending 4 to 6; year ending 99, 00 and 01", () => {
+        expect( getCentury(399) ).toBe("4th");
+        expect( getCentury(500) ).toBe("5th");
+        expect( getCentury(501) ).toBe("6th");
     });
 
-    test("1100 -> 12th", () => {
-        expect( getCentury(1100) ).toBe("12th");
-    });
-
-    test("1877 -> 19th", () => {
+    test("century ending 7 to 0", () => {
+        expect( getCentury(1677) ).toBe("17th");
+        expect( getCentury(1777) ).toBe("18th");
         expect( getCentury(1877) ).toBe("19th");
+        expect( getCentury(1977) ).toBe("20th");
     });
 
-    test("1974 -> 20th", () => {
-        expect( getCentury(1974) ).toBe("20th");
+    test("11th to 13th century special cases", () => {
+        expect( getCentury(1050) ).toBe("11th");
+        expect( getCentury(1150) ).toBe("12th");
+        expect( getCentury(1250) ).toBe("13th");
     });
-    
-    test("2004 -> 21st", () => {
+
+    test("century ending 1 to 3; bigger number", () => {
         expect( getCentury(2004) ).toBe("21st");
+        expect( getCentury(2114) ).toBe("22nd");
+        expect( getCentury(2224) ).toBe("23rd");
+    });
+
+    test("century ending 4 to 6; bigger number", () => {
+        expect( getCentury(2304) ).toBe("24th");
+        expect( getCentury(2414) ).toBe("25th");
+        expect( getCentury(2524) ).toBe("26th");
     });
     
-    test("10000 -> 101st", () => {
-        expect( getCentury(10000) ).toBe("101st");
+    test("century ending 1 to 3; much bigger number", () => {
+        expect( getCentury(10001) ).toBe("101st");
+        expect( getCentury(10101) ).toBe("102nd");
+        expect( getCentury(10201) ).toBe("103rd");
+    });
+
+    test("century ending 0; much bigger number", () => {
+        expect( getCentury(10000) ).toBe("100th");
     });
 });
