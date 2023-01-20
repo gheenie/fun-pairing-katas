@@ -11,16 +11,30 @@ function getCentury(year) {
   if (isTurnOfCentury) {
     year -= 1;
   }
+
   const century = Math.floor(year / 100) + 1;
-  
   const suffixes = {
-    "0, 4-9": "th",
+    "0": "th",
     "1": "st",
     "2": "nd",
-    "3": "rd"
+    "3": "rd",
+    "4": "th",
+    "5": "th",
+    "6": "th",
+    "7": "th",
+    "8": "th",
+    "9": "th",
+    "11": "th",
+    "12": "th",
+    "13": "th",
   };
+  const centuryEndDigit = century % 10;
 
-  return century + suffixes[ century > 5 && century < 21 ? "0, 4-9" : String(century).slice(-1) ];
+  if (century >= 11 && century <=13) {
+    return century + suffixes[century];
+  }
+
+  return century + suffixes[centuryEndDigit];
 }
 
 module.exports = getCentury;
