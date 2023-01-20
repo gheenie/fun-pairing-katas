@@ -7,15 +7,20 @@
 */
 
 function getCentury(year) {
-  let century = Math.floor(year / 100) + 1;
+  const isTurnOfCentury = String(year).endsWith('00');
+  if (isTurnOfCentury) {
+    year -= 1;
+  }
+  const century = Math.floor(year / 100) + 1;
+  
   const suffixes = {
-    "0": "th",
+    "0, 4-9": "th",
     "1": "st",
     "2": "nd",
     "3": "rd"
   };
 
-  return century + suffixes[ century > 5 && century < 21? "0" : String(century).slice(-1) ];
+  return century + suffixes[ century > 5 && century < 21 ? "0, 4-9" : String(century).slice(-1) ];
 }
 
 module.exports = getCentury;
