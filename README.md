@@ -44,9 +44,9 @@ You are testing **'interfaces not implementations'** - you care only about what 
 - range
 - removeDuplicates
 - getDistinctLetters
-- getMostRepeated
-- mergeArrays
 - getFrequencies
+- mergeArrays
+- getMostRepeated
 - lengthenDate
 - caesarCipher
 
